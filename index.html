@@ -45,9 +45,24 @@ canvas {
 
 <canvas id="matrix"></canvas>
 
-<button id="joinBtn" onclick="window.location.href='page2.html'">
-S'inscrire
-</button>
+<div style="position: relative; display: flex; gap: 20px;">
+
+  <button id="joinBtn" onclick="window.location.href='page2.html'">
+    S'inscrire
+  </button>
+
+  <button onclick="window.location.href='game.html'" style="
+    padding: 15px 40px;
+    font-size: 22px;
+    background: #00ff00;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;">
+    Jouer
+  </button>
+
+</div>
 
 <script>
 const canvas = document.getElementById("matrix");
