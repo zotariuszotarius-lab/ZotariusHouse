@@ -47,9 +47,31 @@ canvas {
 
 <div style="position: relative; display: flex; gap: 20px;">
 
-  <button id="joinBtn" onclick="window.location.href='page2.html'">
+<div id="buttons" style="position: relative; display: none; gap: 20px;">
+
+  <button onclick="window.location.href='page2.html'" style="
+    padding: 15px 40px;
+    font-size: 22px;
+    background: #00ff00;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;">
     S'inscrire
   </button>
+
+  <button onclick="window.location.href='game.html'" style="
+    padding: 15px 40px;
+    font-size: 22px;
+    background: #00ff00;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;">
+    Jouer
+  </button>
+
+</div>
 
   <button onclick="window.location.href='game.html'" style="
     padding: 15px 40px;
@@ -100,6 +122,8 @@ function draw(){
 setInterval(draw, 33);
 
 setTimeout(() => {
+  document.getElementById("buttons").style.display = "flex";
+}, 5000);
   document.getElementById("joinBtn").style.display = "block";
 }, 5000);
 </script>
