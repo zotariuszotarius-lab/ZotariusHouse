@@ -1,40 +1,93 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Zotarius - Rejoins-nous</title>
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #000000, #001f3f);
-            font-family: Arial, sans-serif;
-        }
+<meta charset="UTF-8">
+<title>Zotarius - Accès</title>
 
-        .button {
-            padding: 20px 40px;
-            font-size: 24px;
-            color: white;
-            background: #007BFF;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.3s;
-            text-decoration: none;
-        }
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: black;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
 
-        .button:hover {
-            background: #0056b3;
-            transform: scale(1.05);
-        }
-    </style>
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#joinBtn {
+  position: relative;
+  padding: 15px 40px;
+  font-size: 22px;
+  background: #00ff00;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: none;
+  transition: 0.3s;
+}
+
+#joinBtn:hover {
+  transform: scale(1.1);
+}
+</style>
 </head>
+
 <body>
 
-<a href="inscription.html" class="button">Rejoins-nous</a>
+<canvas id="matrix"></canvas>
+
+<button id="joinBtn" onclick="window.location.href='page2.html'">
+S'inscrire
+</button>
+
+<script>
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+const letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&";
+const fontSize = 16;
+const columns = canvas.width / fontSize;
+const drops = [];
+
+for(let x = 0; x < columns; x++)
+    drops[x] = 1;
+
+function draw(){
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#00ff00";
+    ctx.font = fontSize + "px monospace";
+
+    for(let i = 0; i < drops.length; i++){
+        const text = letters[Math.floor(Math.random()*letters.length)];
+        ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+
+        if(drops[i]*fontSize > canvas.height && Math.random() > 0.975)
+            drops[i] = 0;
+
+        drops[i]++;
+    }
+}
+
+setInterval(draw, 33);
+
+setTimeout(() => {
+  document.getElementById("joinBtn").style.display = "block";
+}, 5000);
+</script>
 
 </body>
 </html>
